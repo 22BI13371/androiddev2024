@@ -7,4 +7,16 @@
     android:layout_height="match_parent"
     tools:context=".WeatherActivity">
 
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="1dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible">
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
