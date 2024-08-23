@@ -2,12 +2,15 @@ package vn.edu.usth.weather;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import androidx.fragment.app.Fragment;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -40,7 +43,7 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     public void onResume() {
-        super.onResume();
+        super.onResume();`
 
         Log.i("resume" , "onResume called");
     }
@@ -57,8 +60,6 @@ public class WeatherActivity extends AppCompatActivity {
 
         Log.i("Destroy" , "onDestroy called");
     }
-
-
 
 
 }
