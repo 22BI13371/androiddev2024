@@ -42,7 +42,7 @@ public class WeatherActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-
+        Log.i("resume" , "onResume called");
     }
 
     public void onStop() {
