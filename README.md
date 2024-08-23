@@ -12,5 +12,5 @@ Student Info
 
 * Name: Nguyễn Đàm Quân
 * ID: 22BI13371
-* Group ID: *Your Group ID here*
+* Group ID: 14
 * Project Name: *Your Project Name here*
