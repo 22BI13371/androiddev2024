@@ -1,6 +1,7 @@
 package vn.edu.usth.weather;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,6 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,11 +65,41 @@ public class ForecastFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_forecast, container, false);
+//        View view = new View();
+//        View view = inflater.inflate(R.layout.fragment_forecast, container, false);
+//
+//        view.setBackgroundColor(Color.parseColor("#20FF0000"));
 
-        view.setBackgroundColor(Color.parseColor("#20FF0000"));
-        // Inflate the layout for this fragment
-        return view;
+        LinearLayout ll = new LinearLayout(getActivity());
+        ll.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+        );
+        ll.setLayoutParams(params);
+//        ll.setMinimumHeight(100);
+//        ll.setLayoutParams(params);
+//        ll.setBackgroundColor(Color.parseColor("#20FF0000"));
+
+        ImageView imageView = new ImageView(getActivity());
+        imageView.setImageResource(R.drawable.weather_17275920);
+//        imageView.setVisibility(View.VISIBLE);
+//        imageView.setScaleType(ImageView.ScaleType.CENTER);
+
+        TextView textView = new TextView(getActivity());
+        textView.setText("Thursday");
+        textView.setTextSize(18);
+        textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//        textView.setTextColor(17170444);
+
+        View v = new View(getActivity());
+        v.setBackgroundColor(Color.parseColor("#20FF0000"));
+
+        ll.addView(imageView);
+        ll.addView(textView);
+        ll.addView(v);
+
+        return ll;
     }
 
 }
