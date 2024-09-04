@@ -2,12 +2,14 @@ package vn.edu.usth.weather;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentTransaction;
 
 public class WeatherActivity extends AppCompatActivity {
 
@@ -18,11 +20,25 @@ public class WeatherActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_weather);
 
-        ForecastFragment forecastFragment = new ForecastFragment();
+        LinearLayout ll = new LinearLayout(getApplicationContext());
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, forecastFragment)
-                .commit();
+        ForecastFragment forecastFragment = new ForecastFragment();
+        WeatherFragment weatherFragment = new WeatherFragment();
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+        ft.add(R.id.container1, weatherFragment, "weatherFragment");
+        ft.add(R.id.container2, forecastFragment, "forcastFragment");
+
+        ft.commit();
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.container, weatherFragment)
+//                .add(R.id.container, forecastFragment)
+//                .commit();
+//
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.container, forecastFragment)
+//                .commit();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
