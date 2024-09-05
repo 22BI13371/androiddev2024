@@ -12,5 +12,5 @@ Student Info
 
 * Name: Nguyễn Đàm Quân
 * ID: 22BI13371
-* Group ID: 14
-* Project Name: *Your Project Name here*
+* Group ID: 13
+* Project Name: Facebook Client
