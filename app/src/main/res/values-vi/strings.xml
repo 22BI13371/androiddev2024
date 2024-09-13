@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Thời tiết USTH</string>
+    <string name="action_settings">Tùy chỉnh</string>
+    <string name="first_fragment_label">lorem ipsum</string>
+    <string name="second_fragment_label">lorem ipsum</string>
+    <string name="next">Chuyển tiếp</string>
+    <string name="previous">Quay lại</string>
+    <string name="lorem_ipsum">lorem ipsum</string>
+    <string name="hello_blank_fragment">lorem ipsum</string>
+    <string name="hanoi_vietnam">Hà Nội, Việt Nam</string>
+    <string name="usth_weather">Thời tiết USTH</string>
+    <string name="monday">Thứ 2</string>
+    <string name="partly_cloudy">Hơi mây</string>
+    <string name="temp">Nhiệt dộ</string>
+    <string name="mostly_cloudy">Nhiều mây</string>
+    <string name="sunny">Có nắng</string>
+    <string name="windy">Có gió</string>
+    <string name="raining">Mưa</string>
+    <string name="heavy_rain">Mưa to</string>
+    <string name="tuesday">Thứ 3</string>
+    <string name="wednesday">Thứ 4</string>
+    <string name="thursday">Thứ 5</string>
+    <string name="friday">Thứ 6</string>
+    <string name="saturday">Thứ 7</string>
+    <string name="sunday">Chủ nhât</string>
+    <string name="hanoi">Thời tiết USTH</string>
+</resources>
