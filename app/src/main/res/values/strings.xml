@@ -65,4 +65,5 @@
     <string name="sunday">Sunday</string>
     <string name="_12c" translatable="false">12C</string>
     <string name="hanoi">Hanoi</string>
+    <string name="refresh">Refresh</string>
 </resources>

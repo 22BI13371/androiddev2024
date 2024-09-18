@@ -1,8 +1,12 @@
 package vn.edu.usth.weather;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
+import androidx.appcompat.widget.Toolbar;
+//import androidx.appcompat.
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -34,6 +40,11 @@ public class WeatherActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         new TabLayoutMediator(tabLayout, pager, (tab, position) -> tab.setText(adapter.getPageTitle(position))).attach();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        toolbar.showOverflowMenu();
 
 //        getSupportFragmentManager().beginTransaction()
 //                .add(R.id.container, weatherFragment)
@@ -86,5 +97,27 @@ public class WeatherActivity extends AppCompatActivity {
         Log.i("Destroy" , "onDestroy called");
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int duration = Toast.LENGTH_SHORT;
+        CharSequence refreshToast = "Refreshing";
+
+        if (item.getItemId() == R.id.refresh) {
+            Toast toast = Toast.makeText(this /* MyActivity */, refreshToast, duration);
+            toast.show();
+            return true;
+        } else if (item.getItemId() == R.id.settings) {
+            Intent prefActivityIntent = new Intent(this, PrefActivity.class);
+            startActivity(prefActivityIntent);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

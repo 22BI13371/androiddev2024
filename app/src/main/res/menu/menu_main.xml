@@ -1,10 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="vn.edu.usth.weather.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+    tools:context="vn.edu.usth.weather.WeatherActivity">
+    <group>
+        <item
+            android:id="@+id/refresh"
+            android:icon="@android:drawable/ic_popup_sync"
+            android:title="@string/refresh"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/app_bar_search"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Search"
+            app:actionViewClass="android.widget.SearchView"
+            app:showAsAction="always"
+            android:orderInCategory="1" />
+        <item
+            android:id="@+id/settings"
+            android:orderInCategory="2"
+            android:title="Settings" />
+    </group>
 </menu>
