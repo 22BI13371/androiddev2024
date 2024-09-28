@@ -3,6 +3,9 @@ package vn.edu.usth.weather;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -49,6 +53,33 @@ public class WeatherActivity extends AppCompatActivity {
         MediaPlayer music = MediaPlayer.create(WeatherActivity.this, R.raw.merry_go_round_of_life_howls_moving_castle);
         music.start();
         music.setLooping(true);
+
+
+        final Handler handler = new Handler(Looper.getMainLooper()) {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                String content = msg.getData().getString("server response");
+                Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("Server_response", "some json here");
+
+                Message msg = new Message();
+                msg.setData(bundle);
+                handler.sendMessage(msg);
+            }
+        });
 
 //        getSupportFragmentManager().beginTransaction()
 //                .add(R.id.container, weatherFragment)
@@ -112,8 +143,31 @@ public class WeatherActivity extends AppCompatActivity {
         CharSequence refreshToast = "Refreshing";
 
         if (item.getItemId() == R.id.refresh) {
-            Toast toast = Toast.makeText(this /* MyActivity */, refreshToast, duration);
-            toast.show();
+            final Handler handler = new Handler(Looper.getMainLooper()) {
+                @Override
+                public void handleMessage(@NonNull Message msg) {
+                    String content = msg.getData().getString("server response");
+                    Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+                }
+            };
+
+            Thread t = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Server_response", "some json here");
+
+                    Message msg = new Message();
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                }
+            });
             return true;
         } else if (item.getItemId() == R.id.settings) {
             Intent prefActivityIntent = new Intent(this, PrefActivity.class);
