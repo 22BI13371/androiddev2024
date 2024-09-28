@@ -1,6 +1,7 @@
 package vn.edu.usth.weather;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -17,7 +18,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 import androidx.appcompat.widget.Toolbar;
-//import androidx.appcompat.
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -45,6 +45,10 @@ public class WeatherActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         toolbar.showOverflowMenu();
+
+        MediaPlayer music = MediaPlayer.create(WeatherActivity.this, R.raw.merry_go_round_of_life_howls_moving_castle);
+        music.start();
+        music.setLooping(true);
 
 //        getSupportFragmentManager().beginTransaction()
 //                .add(R.id.container, weatherFragment)
