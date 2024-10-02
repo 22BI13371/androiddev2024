@@ -2,7 +2,9 @@ package vn.edu.usth.weather;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -121,39 +123,54 @@ public class WeatherActivity extends AppCompatActivity {
         CharSequence refreshToast = "Refreshing";
 
         if (item.getItemId() == R.id.refresh) {
-            final Handler handler = new Handler(Looper.getMainLooper()) {
-                @Override
-                public void handleMessage(@NonNull Message msg) {
-                    String content = msg.getData().getString("Server_response");
-                    if(content!=null){
-                        Toast.makeText(context, content, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(context, "Cannot get response from the server", Toast.LENGTH_LONG).show();
-                    }
+//            final Handler handler = new Handler(Looper.getMainLooper()) {
+//                @Override
+//                public void handleMessage(@NonNull Message msg) {
+//                    String content = msg.getData().getString("Server_response");
+//                    if(content!=null){
+//                        Toast.makeText(context, content, Toast.LENGTH_LONG).show();
+//                    } else {
+//                        Toast.makeText(context, "Cannot get response from the server", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            };
+//
+//            Thread t = new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("Server_response", "some json here");
+//
+//                    Message msg = new Message();
+//                    msg.setData(bundle);
+//                    handler.sendMessage(msg);
+//                }
+//            });
+//            t.start();
 
-//                        Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
-                }
-            };
-
-            Thread t = new Thread(new Runnable() {
+            AsyncTask<String, Integer, Bitmap> task = new AsyncTask() {
                 @Override
-                public void run() {
+                protected Object doInBackground(Object[] objects) {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        throw new RuntimeException(e);
                     }
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString("Server_response", "some json here");
-
-                    Message msg = new Message();
-                    msg.setData(bundle);
-                    handler.sendMessage(msg);
+                    return null;
                 }
-            });
-            t.start();
 
+                @Override
+                protected void onPostExecute(Object o) {
+                    Toast.makeText(context, "Some server response", Toast.LENGTH_SHORT).show();
+                }
+            };
+            task.execute("1");
             return true;
         } else if (item.getItemId() == R.id.settings) {
             Intent prefActivityIntent = new Intent(this, PrefActivity.class);
