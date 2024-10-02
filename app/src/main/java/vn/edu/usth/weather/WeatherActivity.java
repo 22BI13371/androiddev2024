@@ -1,5 +1,6 @@
 package vn.edu.usth.weather;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -28,9 +29,12 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 public class WeatherActivity extends AppCompatActivity {
 
+    private static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
         EdgeToEdge.enable(this);
 
         setContentView(R.layout.activity_weather);
@@ -54,32 +58,6 @@ public class WeatherActivity extends AppCompatActivity {
         music.start();
         music.setLooping(true);
 
-
-        final Handler handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                String content = msg.getData().getString("server response");
-                Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
-            }
-        };
-
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                Bundle bundle = new Bundle();
-                bundle.putString("Server_response", "some json here");
-
-                Message msg = new Message();
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-            }
-        });
 
 //        getSupportFragmentManager().beginTransaction()
 //                .add(R.id.container, weatherFragment)
@@ -146,8 +124,14 @@ public class WeatherActivity extends AppCompatActivity {
             final Handler handler = new Handler(Looper.getMainLooper()) {
                 @Override
                 public void handleMessage(@NonNull Message msg) {
-                    String content = msg.getData().getString("server response");
-                    Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+                    String content = msg.getData().getString("Server_response");
+                    if(content!=null){
+                        Toast.makeText(context, content, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "Cannot get response from the server", Toast.LENGTH_LONG).show();
+                    }
+
+//                        Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
                 }
             };
 
@@ -155,7 +139,7 @@ public class WeatherActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     try {
-                        Thread.sleep(5000);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -168,6 +152,8 @@ public class WeatherActivity extends AppCompatActivity {
                     handler.sendMessage(msg);
                 }
             });
+            t.start();
+
             return true;
         } else if (item.getItemId() == R.id.settings) {
             Intent prefActivityIntent = new Intent(this, PrefActivity.class);
